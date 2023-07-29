@@ -28,3 +28,4 @@ window/size/viewport_height=900
 
 2d_physics/layer_1="People"
 2d_physics/layer_2="Terrain"
+2d_physics/layer_3="waypoints"
