@@ -1,13 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://dw1rpvveka3b8"]
+[gd_scene load_steps=18 format=3 uid="uid://b1yd1o8ogxbay"]
 
 [ext_resource type="Script" path="res://main_level.gd" id="1_78d55"]
-[ext_resource type="PackedScene" uid="uid://ccrd1ov7vl0a3" path="res://waypoint.tscn" id="4_oq586"]
+[ext_resource type="PackedScene" path="res://waypoint.tscn" id="4_oq586"]
 [ext_resource type="PackedScene" uid="uid://4ka7g5bbpf54" path="res://criminal.tscn" id="4_ulbpl"]
 [ext_resource type="Texture2D" uid="uid://cvtyiv5ldg36k" path="res://imgs/Inside Tileset.png" id="4_y34q6"]
 [ext_resource type="Script" path="res://GameMap.gd" id="5_05bvp"]
 [ext_resource type="PackedScene" uid="uid://gfpbo7ou5uj4" path="res://guard.tscn" id="5_577lp"]
 [ext_resource type="Script" path="res://RigidBody2D.gd" id="7_6138s"]
-[ext_resource type="PackedScene" path="res://shiny_object.tscn" id="7_befto"]
+[ext_resource type="PackedScene" uid="uid://cqv6n4k0yfpjw" path="res://shiny_object.tscn" id="7_befto"]
 [ext_resource type="Shader" path="res://post_processing.gdshader" id="7_f44i0"]
 [ext_resource type="Texture2D" uid="uid://cuus3ha26x7tj" path="res://icon.svg" id="7_sbn1h"]
 [ext_resource type="Script" path="res://StartButton.gd" id="10_hyywl"]
@@ -201,6 +201,7 @@ offset_left = 1355.0
 offset_top = 183.0
 offset_right = 1594.0
 offset_bottom = 522.0
+mouse_filter = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="ui"]
 position = Vector2(92, 181)
@@ -233,5 +234,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="body_exited" from="waypoints/waypoint1" to="." method="_on_waypoint_1_body_exited"]
