@@ -29,7 +29,8 @@ func finishStep():
 func moveToCurrentTarget(progress):
 	if reachedGoal:
 		return
-	var move = path[currentPointAlongPath + 1] - path[currentPointAlongPath] 
+	var move = path[currentPointAlongPath + 1] - path[currentPointAlongPath]
+	rotation = move.angle() + PI / 2.0
 	$Sprite2D.look_at(path[currentPointAlongPath] + move * progress)
 	$Sprite2D.rotate(PI/2)
 	position = path[currentPointAlongPath] + move * progress

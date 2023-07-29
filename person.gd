@@ -38,8 +38,7 @@ func moveToCurrentTarget(progress):
 	if reachedGoal:
 		return
 	var move = path[currentPointAlongPath + 1] - path[currentPointAlongPath]
-	$texture.look_at(path[currentPointAlongPath] + move * progress)
-	$texture.rotate(PI/2)
+	rotation = move.angle() + PI / 2.0
 	position = path[currentPointAlongPath] + move * progress
 	
 func evaluateNext():

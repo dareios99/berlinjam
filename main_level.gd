@@ -1,5 +1,6 @@
 extends Node2D
 
+var running = false
 var STEP_DURATION = 0.35
 @onready var guards = $"guards"
 @onready var criminals = $"criminals"
@@ -9,6 +10,12 @@ const CRIMINAL = preload("res://criminal.tscn")
 
 
 var timeAccum = 0.0
+
+func start():
+	running = true
+	
+func stop():
+	running = false
 
 func _ready() -> void:
 	set_physics_process(false)
@@ -36,6 +43,8 @@ func start_game() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	#if !running:
+	#	return
 	var allActors: Array[Node] = []
 	allActors.append_array(guards.get_children())
 	allActors.append_array(criminals.get_children())
