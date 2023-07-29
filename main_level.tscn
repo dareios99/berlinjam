@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dw1rpvveka3b8"]
+[gd_scene load_steps=18 format=3 uid="uid://dw1rpvveka3b8"]
 
 [ext_resource type="Script" path="res://main_level.gd" id="1_78d55"]
 [ext_resource type="PackedScene" uid="uid://ccrd1ov7vl0a3" path="res://waypoint.tscn" id="4_oq586"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://shiny_object.tscn" id="7_befto"]
 [ext_resource type="Shader" path="res://post_processing.gdshader" id="7_f44i0"]
 [ext_resource type="Texture2D" uid="uid://cuus3ha26x7tj" path="res://icon.svg" id="7_sbn1h"]
+[ext_resource type="Script" path="res://StartButton.gd" id="10_hyywl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7tqhw"]
 texture = ExtResource("4_y34q6")
@@ -213,6 +214,7 @@ offset_top = 236.0
 offset_right = 190.0
 offset_bottom = 297.0
 text = "START!"
+script = ExtResource("10_hyywl")
 
 [node name="Label" type="Label" parent="ui"]
 layout_mode = 0
