@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://buf7a5skbf76l"]
+
+[ext_resource type="Script" path="res://criminal.gd" id="1_gew3s"]
+[ext_resource type="Texture2D" uid="uid://dt37duhsa4ee3" path="res://imgs/guard.png" id="2_51ojs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ujle"]
+radius = 27.0
+
+[node name="criminal" type="CharacterBody2D"]
+collision_layer = 3
+motion_mode = 1
+script = ExtResource("1_gew3s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_51ojs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4ujle")

@@ -1,20 +1,17 @@
-class_name Guard
+class_name Criminal
 extends CharacterBody2D
 
-#@onready var treasure_container = $"../treasure"
-@onready var criminals_container = $"../../criminals"
-@onready var waypoints_container = $"../../waypoints"
+
+@onready var treasures_container = $"../../treasure"
 @onready var tileMap = $"../../map/TileMap"
 
-var path: PackedVector2Array;
-
-enum GuardState { IDLE, PATROLLING, FOLLOWING}
-var guard_state := GuardState.IDLE
+enum CriminalState { IDLE, SEARCHING, FOLLOWING, ESCAPING}
+var criminal_state := CriminalState.IDLE
 var target
 
 var check_for_criminals_iterator:= 0
-var current_waypoint := 0
 
+var path: PackedVector2Array;
 var currentPointAlongPath = 0;
 var reachedGoal = false
 
@@ -34,48 +31,21 @@ func moveToCurrentTarget(progress):
 		return
 	var move = path[currentPointAlongPath + 1] - path[currentPointAlongPath] 
 	position = path[currentPointAlongPath] + move * progress
-	
+
 func evaluateNext():
-	check_for_criminals_iterator += 1
-	
-	if guard_state == GuardState.IDLE or check_for_criminals_iterator >= 30:
+	if criminal_state == CriminalState.IDLE or check_for_criminals_iterator >= 30:
 		check_for_criminals_iterator = 0
-		_look_for_criminals()
+		_look_for_treasure()
 	
-	if guard_state == GuardState.PATROLLING:
-		_patrol()
+	if criminal_state == CriminalState.SEARCHING:
+#		_patrol()
+		pass
 			
-	if guard_state == GuardState.FOLLOWING:
+	if criminal_state == CriminalState.FOLLOWING:
 		# Follow the criminal
 		pass
-	
-func _look_for_criminals() -> void:
-	for criminal in criminals_container.get_children():
-		if _check_line_of_sight(criminal):
-			guard_state = GuardState.FOLLOWING
-			target = criminal
-			return
-	guard_state = GuardState.PATROLLING
 
-func _patrol() -> void:
-	# Find the next waypoint and follow it
-	var possible_waypoints:Array = waypoints_container.get_children()
-	
-	if current_waypoint > (possible_waypoints.size() - 1 ):
-		current_waypoint = 0
-	
-	var next_movement_target:Vector2 = possible_waypoints[current_waypoint].global_position
-	# Do the movement logic
-	
-func _process(delta):
-	pass
-
-func waypoint_reached(waypoint:Area2D) -> void:
-	if guard_state == GuardState.PATROLLING or guard_state == GuardState.IDLE:
-		var possible_waypoints:Array = waypoints_container.get_children()
-		if possible_waypoints[current_waypoint] == waypoint:
-			current_waypoint += 1
-	
+	_debug_input_movement()
 
 func _debug_input_movement() -> void:
 	var move_speed:= 357.0 
@@ -92,6 +62,15 @@ func _debug_input_movement() -> void:
 	move_and_slide()
 
 
+func _look_for_treasure() -> void:
+	for treasure in treasures_container.get_children():
+		if _check_line_of_sight(treasure):
+			criminal_state = CriminalState.FOLLOWING
+			target = treasure
+			return
+	criminal_state = CriminalState.SEARCHING
+	
+	
 func _check_line_of_sight(with_object:Node2D) -> bool:
 	if !is_instance_valid(with_object):
 		return false
@@ -107,3 +86,11 @@ func _check_line_of_sight(with_object:Node2D) -> bool:
 	return true
 
 
+func receive_treasure(treasure:String) -> void:
+	match treasure:
+		"gold":
+			pass
+		"diamond":
+			pass
+		"chest":
+			pass
