@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://beo4hjdyjjwpg"]
+[gd_scene load_steps=4 format=3 uid="uid://beo4hjdyjjwpg"]
 
+[ext_resource type="Script" path="res://person.gd" id="1_lh4b3"]
 [ext_resource type="Texture2D" uid="uid://dt37duhsa4ee3" path="res://imgs/guard.png" id="1_v082o"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_poasi"]
+radius = 41.3038
 
-[node name="Guard" type="Sprite2D" parent="."]
+[node name="person" type="CharacterBody2D"]
+script = ExtResource("1_lh4b3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(202, 556)
+shape = SubResource("CircleShape2D_poasi")
+
+[node name="texture" type="Sprite2D" parent="."]
 texture_filter = 1
+position = Vector2(201, 556)
+scale = Vector2(3.74495, 3.74495)
 texture = ExtResource("1_v082o")
