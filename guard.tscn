@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://blwdmv3m0rppc"]
+[gd_scene load_steps=5 format=3 uid="uid://gfpbo7ou5uj4"]
 
 [ext_resource type="Script" path="res://person.gd" id="1_lh4b3"]
 [ext_resource type="Texture2D" uid="uid://dt37duhsa4ee3" path="res://imgs/guard.png" id="1_v082o"]
+[ext_resource type="Texture2D" uid="uid://bkuuy3rh385mg" path="res://imgs/exclamation.png" id="3_0w812"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_poasi"]
 radius = 24.0208
@@ -18,3 +19,9 @@ shape = SubResource("CircleShape2D_poasi")
 [node name="texture" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_v082o")
+
+[node name="Exclamation" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(51, -42)
+texture = ExtResource("3_0w812")

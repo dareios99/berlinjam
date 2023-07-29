@@ -6,7 +6,7 @@ var STEP_DURATION = 0.35
 
 var timeAccum = 0.0
 
-func _process(delta):
+func _physics_process(delta: float) -> void:
 	var allActors: Array[Node] = []
 	allActors.append_array(guards.get_children())
 	allActors.append_array(criminals.get_children())
@@ -14,7 +14,7 @@ func _process(delta):
 	while timeAccum > STEP_DURATION:
 		for actor in allActors:
 			actor.finishStep()
-			
+		for actor in allActors:
 			actor.evaluateNext()
 		timeAccum -= STEP_DURATION
 		

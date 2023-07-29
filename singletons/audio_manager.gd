@@ -8,8 +8,10 @@ var sound_collection:= {}
 func _ready() -> void:
 	var sound_resources = [
 		["treasure" , load("res://sound/coin.wav") ],
-		
-
+		["guard_radios", load("res://sound/radio_chatter2.wav")],
+		["guard_whistle", load("res://sound/whistle.wav")],
+		["pop", load("res://sound/pop.wav")],
+		["victory", load("res://sound/victory.wav")]
 	]
 	
 	for sound_pair in sound_resources:

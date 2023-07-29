@@ -33,6 +33,10 @@ func moveToCurrentTarget(progress):
 	position = path[currentPointAlongPath] + move * progress
 
 func evaluateNext():
+	if velocity != Vector2.ZERO:
+		$Sprite2D.look_at(global_position + velocity)
+		$Sprite2D.rotate(PI/2)
+	
 	if criminal_state == CriminalState.IDLE or check_for_criminals_iterator >= 30:
 		check_for_criminals_iterator = 0
 		_look_for_treasure()

@@ -10,7 +10,7 @@ var path: PackedVector2Array;
 
 enum GuardState { IDLE, PATROLLING, FOLLOWING}
 var guard_state := GuardState.IDLE
-var target
+var target:Vector2
 
 var check_for_criminals_iterator:= 0
 var current_waypoint := 0
@@ -20,6 +20,8 @@ var reachedGoal = false
 
 func _ready() -> void:
 	path = tileMap.calculatePath(tileMap.getClosestGridPoint(position), tileMap.getClosestGridPoint(Vector2(0, 750)))
+
+
 
 func finishStep():
 	if reachedGoal:
@@ -36,6 +38,10 @@ func moveToCurrentTarget(progress):
 	position = path[currentPointAlongPath] + move * progress
 	
 func evaluateNext():
+	if velocity != Vector2.ZERO:
+		$texture.look_at(global_position + velocity)
+		$texture.rotate(PI/2)
+		
 	check_for_criminals_iterator += 1
 	
 	if guard_state == GuardState.IDLE or check_for_criminals_iterator >= 30:
@@ -52,8 +58,9 @@ func evaluateNext():
 func _look_for_criminals() -> void:
 	for criminal in criminals_container.get_children():
 		if _check_line_of_sight(criminal):
+			_show_surprise()
 			guard_state = GuardState.FOLLOWING
-			target = criminal
+			target = criminal.global_position
 			return
 	guard_state = GuardState.PATROLLING
 
@@ -64,7 +71,7 @@ func _patrol() -> void:
 	if current_waypoint > (possible_waypoints.size() - 1 ):
 		current_waypoint = 0
 	
-	var next_movement_target:Vector2 = possible_waypoints[current_waypoint].global_position
+	target = possible_waypoints[current_waypoint].global_position
 	# Do the movement logic
 	
 func _process(delta):
@@ -103,7 +110,17 @@ func _check_line_of_sight(with_object:Node2D) -> bool:
 	
 	if result.is_empty():
 		return false
-	
+	if result.collider is TileMap:
+		return false
 	return true
 
-
+func _show_surprise() -> void:
+	var exclamation = $Exclamation
+	if exclamation.visible:
+		return
+	exclamation.visible = true
+	var tween = create_tween()
+	tween.tween_property(exclamation, "modulate:a", 1.0, 0.2)
+	tween.tween_interval(1.0)
+	tween.tween_property(exclamation, "modulate:a", 0.0, 0.7)
+	tween.tween_callback(func(): exclamation.visible = false)
