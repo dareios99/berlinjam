@@ -21,8 +21,11 @@ var reachedGoal = false
 func _ready() -> void:
 	path = tileMap.calculatePath(tileMap.getClosestGridPoint(position), tileMap.getClosestGridPoint(Vector2(0, 750)))
 
-
-
+func set_new_path(targetPos: Vector2) -> void:
+	path = tileMap.calculatePath(tileMap.getClosestGridPoint(position), tileMap.getClosestGridPoint(targetPos))
+	reachedGoal = false
+	currentPointAlongPath= 0
+	
 func finishStep():
 	if reachedGoal:
 		return
@@ -61,6 +64,7 @@ func _look_for_criminals() -> void:
 			_show_surprise()
 			guard_state = GuardState.FOLLOWING
 			target = criminal.global_position
+			set_new_path(target)
 			return
 	guard_state = GuardState.PATROLLING
 
@@ -72,6 +76,7 @@ func _patrol() -> void:
 		current_waypoint = 0
 	
 	target = possible_waypoints[current_waypoint].global_position
+	set_new_path(target)
 	# Do the movement logic
 	
 func _process(delta):
