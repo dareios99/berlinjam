@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1yd1o8ogxbay"]
+[gd_scene load_steps=14 format=3 uid="uid://b1yd1o8ogxbay"]
 
 [ext_resource type="Script" path="res://main_level.gd" id="1_78d55"]
 [ext_resource type="PackedScene" uid="uid://ccrd1ov7vl0a3" path="res://waypoint.tscn" id="4_oq586"]
 [ext_resource type="PackedScene" uid="uid://buf7a5skbf76l" path="res://criminal.tscn" id="4_ulbpl"]
 [ext_resource type="Texture2D" uid="uid://cvtyiv5ldg36k" path="res://imgs/Inside Tileset.png" id="4_y34q6"]
 [ext_resource type="Script" path="res://GameMap.gd" id="5_05bvp"]
+[ext_resource type="Script" path="res://RigidBody2D.gd" id="7_6138s"]
 [ext_resource type="PackedScene" path="res://shiny_object.tscn" id="7_befto"]
 [ext_resource type="Shader" path="res://post_processing.gdshader" id="7_f44i0"]
+[ext_resource type="Texture2D" uid="uid://cuus3ha26x7tj" path="res://icon.svg" id="7_sbn1h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7tqhw"]
 texture = ExtResource("4_y34q6")
@@ -95,6 +97,9 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 2
 sources/1 = SubResource("TileSetAtlasSource_7tqhw")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kja5n"]
+size = Vector2(39, 77)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_652kb"]
 shader = ExtResource("7_f44i0")
 
@@ -136,6 +141,21 @@ position = Vector2(869, 566)
 
 [node name="waypoint3" parent="waypoints" instance=ExtResource("4_oq586")]
 position = Vector2(734, 743)
+
+[node name="placeable_obst" type="Node2D" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="placeable_obst"]
+position = Vector2(17, 36)
+freeze = true
+script = ExtResource("7_6138s")
+
+[node name="Sprite2D" type="Sprite2D" parent="placeable_obst/RigidBody2D"]
+position = Vector2(3.8147e-06, -3.8147e-06)
+scale = Vector2(0.296875, 0.59375)
+texture = ExtResource("7_sbn1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="placeable_obst/RigidBody2D"]
+shape = SubResource("RectangleShape2D_kja5n")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
