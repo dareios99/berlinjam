@@ -4,6 +4,7 @@ var started = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.pressed.connect(self._button_pressed)
 	pass # Replace with function body.
 
 
@@ -16,7 +17,9 @@ func _button_pressed():
 		get_tree().root.start()
 		started = true
 		self.text = "STOP"
+		print("STOP")
 	else: 
 		get_tree().root.stop()
 		started = false
 		self.text = "START!"
+		print("START")
