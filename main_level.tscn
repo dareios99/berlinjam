@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6fhnw2t4jnnq"]
+[gd_scene load_steps=5 format=3 uid="uid://c6fhnw2t4jnnq"]
 
 [ext_resource type="Script" path="res://main_level.gd" id="1_78d55"]
 [ext_resource type="Texture2D" uid="uid://tcc0l00g153t" path="res://imgs/white_background.jpg" id="2_6p62r"]
 [ext_resource type="Texture2D" uid="uid://fmu4qfhrudxj" path="res://imgs/object.jpg" id="3_7r7ry"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m0kdl"]
+vertices = PackedVector2Array(282, 556, 867, 478, 1123, 460, 1333, 772, -19, 771, 210, 582, 627, 456, 273, 513, 862, 381, 299, 176, 1012, 164, 1073, 182, 1120, 403, 1139, 167, 1328, -18, 1139, 114, 142, 555, -14, -9, 146, 513, 619, 411, 212, 487, 165, 174, 1008, 111, 299, 125, 230, 200, 161, 125, 1076, 87, 233, 102)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 1, 0, 7), PackedInt32Array(8, 9, 10, 11, 12), PackedInt32Array(13, 14, 3, 2, 12), PackedInt32Array(14, 13, 15), PackedInt32Array(16, 5, 4), PackedInt32Array(16, 4, 17, 18), PackedInt32Array(11, 13, 12), PackedInt32Array(9, 8, 19), PackedInt32Array(20, 18, 17, 21), PackedInt32Array(22, 10, 9, 23), PackedInt32Array(24, 9, 19, 6, 7, 20), PackedInt32Array(21, 24, 20), PackedInt32Array(25, 21, 17), PackedInt32Array(14, 15, 26), PackedInt32Array(17, 14, 26, 22, 23, 27), PackedInt32Array(17, 27, 25)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-14, -9, -19, 771, 1333, 772, 1328, -18), PackedVector2Array(161, 125, 165, 174, 230, 200, 299, 176, 299, 125, 233, 102), PackedVector2Array(619, 411, 862, 381, 1120, 403, 1123, 460, 867, 478, 627, 456), PackedVector2Array(1008, 111, 1076, 87, 1139, 114, 1139, 167, 1073, 182, 1012, 164), PackedVector2Array(146, 513, 212, 487, 273, 513, 282, 556, 210, 582, 142, 555)])
 
 [node name="main_level" type="Node2D"]
 script = ExtResource("1_78d55")
@@ -10,8 +15,8 @@ script = ExtResource("1_78d55")
 [node name="map" type="Node2D" parent="."]
 
 [node name="background" type="Sprite2D" parent="map"]
-position = Vector2(700.567, 380.331)
-scale = Vector2(0.920431, 1.02136)
+position = Vector2(655, 380.331)
+scale = Vector2(0.987491, 1.02136)
 texture = ExtResource("2_6p62r")
 
 [node name="object" type="Sprite2D" parent="map/background"]
@@ -33,3 +38,12 @@ texture = ExtResource("3_7r7ry")
 position = Vector2(-448.071, 149.624)
 scale = Vector2(0.508607, 0.335259)
 texture = ExtResource("3_7r7ry")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_m0kdl")
+
+[node name="player_placeholder" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_placeholder"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="player_placeholder"]
