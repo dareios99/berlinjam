@@ -10,11 +10,12 @@ extends Area2D
 func collect_treasure(the_person:Person) -> void:
 	the_person.receive_treasure(type_of_treasure)
 	AudioManager.play_sound("treasure")
+	self_delete.call_deferred()
+	
+	
+func self_delete() -> void:
 	get_parent().remove_child(self)
 	self.queue_free()
-	
-	
-
 
 func _on_body_entered(body: Node2D) -> void:
 	if not body is Person:
