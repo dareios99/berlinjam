@@ -6,8 +6,7 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	pass
-	
-	
+
 
 func _physics_process(delta):
 	var target:Node2D
@@ -30,3 +29,13 @@ func _check_line_of_sight(with_object:Node2D) -> bool:
 		return false
 	
 	return true
+
+
+func receive_treasure(treasure:String) -> void:
+	match treasure:
+		"gold":
+			pass
+		"diamond":
+			pass
+		"chest":
+			pass

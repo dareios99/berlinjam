@@ -1,8 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6fhnw2t4jnnq"]
+[gd_scene load_steps=9 format=3 uid="uid://c6fhnw2t4jnnq"]
 
 [ext_resource type="Script" path="res://main_level.gd" id="1_78d55"]
-[ext_resource type="Texture2D" uid="uid://tcc0l00g153t" path="res://imgs/white_background.jpg" id="2_6p62r"]
-[ext_resource type="Texture2D" uid="uid://fmu4qfhrudxj" path="res://imgs/object.jpg" id="3_7r7ry"]
 [ext_resource type="Texture2D" uid="uid://cvtyiv5ldg36k" path="res://imgs/Inside Tileset.png" id="4_y34q6"]
 [ext_resource type="Script" path="res://person.gd" id="5_r8dc0"]
 [ext_resource type="Texture2D" uid="uid://cuus3ha26x7tj" path="res://icon.svg" id="6_n6pam"]
@@ -98,31 +96,6 @@ radius = 41.3038
 script = ExtResource("1_78d55")
 
 [node name="map" type="Node2D" parent="."]
-
-[node name="background" type="Sprite2D" parent="map"]
-position = Vector2(655, 380.331)
-scale = Vector2(0.987491, 1.02136)
-texture = ExtResource("2_6p62r")
-
-[node name="object" type="Sprite2D" parent="map/background"]
-position = Vector2(-425.179, -229.72)
-scale = Vector2(0.508607, 0.335259)
-texture = ExtResource("3_7r7ry")
-
-[node name="object2" type="Sprite2D" parent="map/background"]
-position = Vector2(234.64, 47.2789)
-scale = Vector2(1.96429, 0.335259)
-texture = ExtResource("3_7r7ry")
-
-[node name="object3" type="Sprite2D" parent="map/background"]
-position = Vector2(427.199, -238.619)
-scale = Vector2(0.508607, 0.335259)
-texture = ExtResource("3_7r7ry")
-
-[node name="object4" type="Sprite2D" parent="map/background"]
-position = Vector2(-455.7, 168.079)
-scale = Vector2(0.508607, 0.335259)
-texture = ExtResource("3_7r7ry")
 
 [node name="TileMap" type="TileMap" parent="map"]
 tile_set = SubResource("TileSet_kic0c")
