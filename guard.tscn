@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://beo4hjdyjjwpg"]
+
+[ext_resource type="Texture2D" uid="uid://dt37duhsa4ee3" path="res://imgs/guard.png" id="1_v082o"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Guard" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_v082o")
