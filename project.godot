@@ -14,3 +14,13 @@ config/name="Berlinjam"
 run/main_scene="res://main_level.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+
+[layer_names]
+
+2d_physics/layer_1="People"
+2d_physics/layer_2="Terrain"
