@@ -29,7 +29,8 @@ func finishStep():
 func moveToCurrentTarget(progress):
 	if reachedGoal:
 		return
-	var move = path[currentPointAlongPath + 1] - path[currentPointAlongPath] 
+	var move = path[currentPointAlongPath + 1] - path[currentPointAlongPath]
+	rotation = move.angle() + PI / 2.0
 	position = path[currentPointAlongPath] + move * progress
 
 func evaluateNext():
