@@ -1,4 +1,4 @@
-class_name Person
+class_name Guard
 extends CharacterBody2D
 
 #@onready var treasure_container = $"../treasure"
@@ -33,7 +33,7 @@ func _physics_process(delta:float):
 		# Follow the criminal
 		pass
 
-	_debug_input_movement()
+#	_debug_input_movement()
 	
 	
 func _look_for_criminals() -> void:
@@ -93,11 +93,3 @@ func _check_line_of_sight(with_object:Node2D) -> bool:
 	return true
 
 
-func receive_treasure(treasure:String) -> void:
-	match treasure:
-		"gold":
-			pass
-		"diamond":
-			pass
-		"chest":
-			pass
