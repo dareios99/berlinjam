@@ -1,18 +1,36 @@
 extends CharacterBody2D
 
 @onready var treasure_container = $"../treasure"
+@onready var tileMap = $"../map/TileMap"
 
+var path: PackedVector2Array;
 
 func _ready() -> void:
+	path = tileMap.calculatePath(tileMap.getClosestGridPoint(position), tileMap.getClosestGridPoint(Vector2(0, 750)))
+	
+var current = 0;
+var reachedGoal = false
+
+func finishStep():
+	current += 1
+	if current == path.size() - 1:
+		reachedGoal = true
+	
+func moveToCurrentTarget(progress):
+	if reachedGoal:
+		return
+	var move = path[current + 1] - path[current] 
+	position = path[current] + move * progress
+
+func _process(delta):
 	pass
-	
-	
 
 func _physics_process(delta):
 	var target:Node2D
 	for diamond in treasure_container.get_children():
 		if _check_line_of_sight(diamond):
-			print("Found " + str(diamond.name))
+			pass
+			#print("Found " + str(diamond.name))
 
 
 
