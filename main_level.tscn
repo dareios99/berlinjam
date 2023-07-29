@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=15 format=3 uid="uid://c6fhnw2t4jnnq"]
-=======
-[gd_scene load_steps=16 format=3 uid="uid://b1yd1o8ogxbay"]
->>>>>>> 080bae2199d4ab3ef12c28cd899f6d2054e66f4d
+[gd_scene load_steps=17 format=3 uid="uid://dw1rpvveka3b8"]
 
 [ext_resource type="Script" path="res://main_level.gd" id="1_78d55"]
 [ext_resource type="PackedScene" uid="uid://ccrd1ov7vl0a3" path="res://waypoint.tscn" id="4_oq586"]
@@ -105,15 +101,15 @@ sources/1 = SubResource("TileSetAtlasSource_7tqhw")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kja5n"]
 size = Vector2(39, 77)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_652kb"]
-shader = ExtResource("7_f44i0")
-
 [sub_resource type="Gradient" id="Gradient_egtee"]
 offsets = PackedFloat32Array(0, 0.0179641)
 colors = PackedColorArray(0, 0, 0, 1, 1, 0.798333, 0.45, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wfbjc"]
 gradient = SubResource("Gradient_egtee")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_253m4"]
+shader = ExtResource("7_f44i0")
 
 [node name="main_level" type="Node2D"]
 script = ExtResource("1_78d55")
@@ -197,19 +193,6 @@ texture = ExtResource("7_sbn1h")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="placeable_obst/RigidBody2D3"]
 shape = SubResource("RectangleShape2D_kja5n")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
-material = SubResource("ShaderMaterial_652kb")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-<<<<<<< HEAD
-=======
-
 [node name="ui" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -239,5 +222,14 @@ offset_right = 208.0
 offset_bottom = 89.0
 text = "AREA COVERED: 56% (of 75%)"
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_253m4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="body_exited" from="waypoints/waypoint1" to="." method="_on_waypoint_1_body_exited"]
->>>>>>> 080bae2199d4ab3ef12c28cd899f6d2054e66f4d
