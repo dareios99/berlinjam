@@ -37,7 +37,7 @@ func _physics_process(delta:float):
 	
 	
 func _look_for_criminals() -> void:
-	for criminal in criminals_container:
+	for criminal in criminals_container.get_children():
 		if _check_line_of_sight(criminal):
 			guard_state = GuardState.FOLLOWING
 			target = criminal
