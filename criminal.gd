@@ -30,12 +30,11 @@ func moveToCurrentTarget(progress):
 	if reachedGoal:
 		return
 	var move = path[currentPointAlongPath + 1] - path[currentPointAlongPath] 
+	$Sprite2D.look_at(path[currentPointAlongPath] + move * progress)
+	$Sprite2D.rotate(PI/2)
 	position = path[currentPointAlongPath] + move * progress
 
 func evaluateNext():
-	if velocity != Vector2.ZERO:
-		$Sprite2D.look_at(global_position + velocity)
-		$Sprite2D.rotate(PI/2)
 	
 	if criminal_state == CriminalState.IDLE or check_for_criminals_iterator >= 30:
 		check_for_criminals_iterator = 0

@@ -37,13 +37,13 @@ func finishStep():
 func moveToCurrentTarget(progress):
 	if reachedGoal:
 		return
-	var move = path[currentPointAlongPath + 1] - path[currentPointAlongPath] 
+	var move = path[currentPointAlongPath + 1] - path[currentPointAlongPath]
+	$texture.look_at(path[currentPointAlongPath] + move * progress)
+	$texture.rotate(PI/2)
 	position = path[currentPointAlongPath] + move * progress
 	
 func evaluateNext():
-	if velocity != Vector2.ZERO:
-		$texture.look_at(global_position + velocity)
-		$texture.rotate(PI/2)
+		
 		
 	check_for_criminals_iterator += 1
 	

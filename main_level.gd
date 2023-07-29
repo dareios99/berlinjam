@@ -4,7 +4,36 @@ var STEP_DURATION = 0.35
 @onready var guards = $"guards"
 @onready var criminals = $"criminals"
 
+const GUARD = preload("res://guard.tscn")
+const CRIMINAL = preload("res://criminal.tscn")
+
+
 var timeAccum = 0.0
+
+func _ready() -> void:
+	set_physics_process(false)
+	start_game()
+	
+
+func start_game() -> void:
+	var i = 0
+	for guard in $guard_spawn_points.get_children():
+		var guardu = GUARD.instantiate()
+		guardu.current_waypoint = i * 3
+		guardu.global_position = guard.global_position
+		$guards.add_child(guardu)
+		i += 1
+	
+	for crimin in $criminal_spawn_points.get_children():
+		var crim = CRIMINAL.instantiate()
+		crim.global_position = crim.global_position
+		$criminals.add_child(crim)
+	
+	set_physics_process(true)
+	
+
+
+
 
 func _physics_process(delta: float) -> void:
 	var allActors: Array[Node] = []
