@@ -3,12 +3,14 @@ extends TileMap
 var astar:AStar2D
 var width:int;
 var height:int;
+var offsetX: int;
+var offsetY: int;
 
 func getCellId(location: Vector2i):
-	return location.y * width + location.x
+	return (location.y - offsetY) * width + (location.x - offsetX)
 	
 func getGridPositionFromId(id: int):
-	return Vector2i(id % width, id / width)
+	return Vector2i((id % width) + offsetX, (id / width) + offsetY)
 	
 func getClosestGridPoint(point: Vector2):
 	return getGridPositionFromId(astar.get_closest_point(point))
@@ -25,6 +27,9 @@ func _ready():
 	
 	self.width = usedRect.size.x
 	self.height = usedRect.size.y
+	
+	self.offsetX = usedRect.position.x
+	self.offsetY = usedRect.position.y
 	
 	astar = AStar2D.new()
 	astar.reserve_space(width * height)

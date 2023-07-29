@@ -1,7 +1,7 @@
 extends Area2D
 
-@onready var img_diamond = preload("res://imgs/diamond.png")
-@onready var img_gold = preload("res://imgs/diamond.png")
+@onready var img_diamond = preload("res://imgs/goal.png")
+@onready var img_small = preload("res://imgs/shiny.png")
 @onready var img_chest = preload("res://imgs/diamond.png")
 
 
@@ -11,8 +11,8 @@ func _ready() -> void:
 	match type_of_treasure:
 		"diamond":
 			$Sprite2D.texture = img_diamond
-		"gold":
-			$Sprite2D.texture = img_gold
+		"small_diamond":
+			$Sprite2D.texture = img_small
 		"chest":
 			$Sprite2D.texture = img_chest
 

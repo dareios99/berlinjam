@@ -5,10 +5,12 @@
 [ext_resource type="PackedScene" path="res://criminal.tscn" id="4_ulbpl"]
 [ext_resource type="Texture2D" uid="uid://cvtyiv5ldg36k" path="res://imgs/Inside Tileset.png" id="4_y34q6"]
 [ext_resource type="Script" path="res://GameMap.gd" id="5_05bvp"]
+[ext_resource type="PackedScene" uid="uid://gfpbo7ou5uj4" path="res://guard.tscn" id="5_577lp"]
 [ext_resource type="Script" path="res://RigidBody2D.gd" id="7_6138s"]
-[ext_resource type="PackedScene" uid="uid://cqv6n4k0yfpjw" path="res://shiny_object.tscn" id="7_befto"]
+[ext_resource type="PackedScene" path="res://shiny_object.tscn" id="7_befto"]
 [ext_resource type="Shader" path="res://post_processing.gdshader" id="7_f44i0"]
 [ext_resource type="Texture2D" uid="uid://cuus3ha26x7tj" path="res://icon.svg" id="7_sbn1h"]
+[ext_resource type="Script" path="res://StartButton.gd" id="10_hyywl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7tqhw"]
 texture = ExtResource("4_y34q6")
@@ -100,15 +102,15 @@ sources/1 = SubResource("TileSetAtlasSource_7tqhw")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kja5n"]
 size = Vector2(39, 77)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_652kb"]
-shader = ExtResource("7_f44i0")
-
 [sub_resource type="Gradient" id="Gradient_egtee"]
 offsets = PackedFloat32Array(0, 0.0179641)
 colors = PackedColorArray(0, 0, 0, 1, 1, 0.798333, 0.45, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wfbjc"]
 gradient = SubResource("Gradient_egtee")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_253m4"]
+shader = ExtResource("7_f44i0")
 
 [node name="main_level" type="Node2D"]
 script = ExtResource("1_78d55")
@@ -134,6 +136,8 @@ position = Vector2(379, 190)
 position = Vector2(127, 210)
 
 [node name="guards" type="Node2D" parent="."]
+
+[node name="guard1" parent="guards" instance=ExtResource("5_577lp")]
 
 [node name="criminals" type="Node2D" parent="."]
 
@@ -191,17 +195,6 @@ texture = ExtResource("7_sbn1h")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="placeable_obst/RigidBody2D3"]
 shape = SubResource("RectangleShape2D_kja5n")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
-material = SubResource("ShaderMaterial_652kb")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="ui" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -222,6 +215,7 @@ offset_top = 236.0
 offset_right = 190.0
 offset_bottom = 297.0
 text = "START!"
+script = ExtResource("10_hyywl")
 
 [node name="Label" type="Label" parent="ui"]
 layout_mode = 0
@@ -230,5 +224,15 @@ offset_top = 63.0
 offset_right = 208.0
 offset_bottom = 89.0
 text = "AREA COVERED: 56% (of 75%)"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_253m4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="body_exited" from="waypoints/waypoint1" to="." method="_on_waypoint_1_body_exited"]
