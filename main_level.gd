@@ -43,8 +43,8 @@ func start_game() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	#if !running:
-	#	return
+	if !running:
+		return
 	var allActors: Array[Node] = []
 	allActors.append_array(guards.get_children())
 	allActors.append_array(criminals.get_children())

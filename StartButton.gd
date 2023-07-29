@@ -14,12 +14,12 @@ func _process(delta):
 
 func _button_pressed():
 	if !started:
-		#get_tree().root.start()
+		get_tree().root.get_node("main_level").start()
 		started = true
 		self.text = "STOP"
 		print("STOP")
 	else: 
-		#get_tree().root.stop()
+		get_tree().root.get_node("main_level").stop()
 		started = false
 		self.text = "START!"
 		print("START")
