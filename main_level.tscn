@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-[gd_scene load_steps=15 format=3 uid="uid://c6fhnw2t4jnnq"]
-=======
-[gd_scene load_steps=16 format=3 uid="uid://b1yd1o8ogxbay"]
->>>>>>> 080bae2199d4ab3ef12c28cd899f6d2054e66f4d
+[gd_scene load_steps=17 format=3 uid="uid://b1yd1o8ogxbay"]
 
 [ext_resource type="Script" path="res://main_level.gd" id="1_78d55"]
 [ext_resource type="PackedScene" path="res://waypoint.tscn" id="4_oq586"]
-[ext_resource type="PackedScene" uid="uid://buf7a5skbf76l" path="res://criminal.tscn" id="4_ulbpl"]
+[ext_resource type="PackedScene" uid="uid://4ka7g5bbpf54" path="res://criminal.tscn" id="4_ulbpl"]
 [ext_resource type="Texture2D" uid="uid://cvtyiv5ldg36k" path="res://imgs/Inside Tileset.png" id="4_y34q6"]
 [ext_resource type="Script" path="res://GameMap.gd" id="5_05bvp"]
 [ext_resource type="PackedScene" uid="uid://gfpbo7ou5uj4" path="res://guard.tscn" id="5_577lp"]
@@ -207,8 +203,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-<<<<<<< HEAD
-=======
 
 [node name="ui" type="Control" parent="."]
 layout_mode = 3
@@ -240,4 +234,3 @@ offset_bottom = 89.0
 text = "AREA COVERED: 56% (of 75%)"
 
 [connection signal="body_exited" from="waypoints/waypoint1" to="." method="_on_waypoint_1_body_exited"]
->>>>>>> 080bae2199d4ab3ef12c28cd899f6d2054e66f4d
