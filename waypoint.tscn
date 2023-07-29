@@ -13,4 +13,5 @@ script = ExtResource("1_ijiig")
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_sh4jb")
 
+[connection signal="area_shape_exited" from="." to="." method="_on_area_shape_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -7,14 +7,16 @@
 radius = 24.0208
 
 [node name="person" type="CharacterBody2D"]
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_lh4b3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(202, 562)
+position = Vector2(-0.08078, -0.0807381)
 shape = SubResource("CircleShape2D_poasi")
 
 [node name="texture" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(201, 556)
+position = Vector2(-1.0808, -6.0808)
 scale = Vector2(3.74495, 3.74495)
 texture = ExtResource("1_v082o")
