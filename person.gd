@@ -2,9 +2,11 @@ class_name Guard
 extends CharacterBody2D
 
 #@onready var treasure_container = $"../treasure"
-@onready var criminals_container = $"../criminals"
-@onready var waypoints_container = $"../waypoints"
+@onready var criminals_container = $"../../criminals"
+@onready var waypoints_container = $"../../waypoints"
+@onready var tileMap = $"../../map/TileMap"
 
+var path: PackedVector2Array;
 
 enum GuardState { IDLE, PATROLLING, FOLLOWING}
 var guard_state := GuardState.IDLE
@@ -13,19 +15,33 @@ var target
 var check_for_criminals_iterator:= 0
 var current_waypoint := 0
 
-
+var currentPointAlongPath = 0;
+var reachedGoal = false
 
 func _ready() -> void:
-	pass
+	path = tileMap.calculatePath(tileMap.getClosestGridPoint(position), tileMap.getClosestGridPoint(Vector2(0, 750)))
 
-
-func _physics_process(delta:float):
+func finishStep():
+	if reachedGoal:
+		return
+	currentPointAlongPath += 1
+	position = path[currentPointAlongPath]
+	if currentPointAlongPath == path.size() - 1:
+		reachedGoal = true
+		
+func moveToCurrentTarget(progress):
+	if reachedGoal:
+		return
+	var move = path[currentPointAlongPath + 1] - path[currentPointAlongPath] 
+	position = path[currentPointAlongPath] + move * progress
+	
+func evaluateNext():
 	if velocity != Vector2.ZERO:
 		$texture.look_at(global_position + velocity)
 		$texture.rotate(PI/2)
 		
 	check_for_criminals_iterator += 1
-				
+	
 	if guard_state == GuardState.IDLE or check_for_criminals_iterator >= 30:
 		check_for_criminals_iterator = 0
 		_look_for_criminals()
@@ -36,9 +52,6 @@ func _physics_process(delta:float):
 	if guard_state == GuardState.FOLLOWING:
 		# Follow the criminal
 		pass
-
-#	_debug_input_movement()
-	
 	
 func _look_for_criminals() -> void:
 	for criminal in criminals_container.get_children():
@@ -48,7 +61,6 @@ func _look_for_criminals() -> void:
 			target = criminal
 			return
 	guard_state = GuardState.PATROLLING
-		
 
 func _patrol() -> void:
 	# Find the next waypoint and follow it
@@ -60,6 +72,8 @@ func _patrol() -> void:
 	var next_movement_target:Vector2 = possible_waypoints[current_waypoint].global_position
 	# Do the movement logic
 	
+func _process(delta):
+	pass
 
 func waypoint_reached(waypoint:Area2D) -> void:
 	if guard_state == GuardState.PATROLLING or guard_state == GuardState.IDLE:
