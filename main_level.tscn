@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://c6fhnw2t4jnnq"]
 
-[ext_resource type="PackedScene" path="res://waypoint.tscn" id="4_oq586"]
-[ext_resource type="PackedScene" path="res://criminal.tscn" id="4_ulbpl"]
+[ext_resource type="PackedScene" uid="uid://ccrd1ov7vl0a3" path="res://waypoint.tscn" id="4_oq586"]
+[ext_resource type="PackedScene" uid="uid://4ka7g5bbpf54" path="res://criminal.tscn" id="4_ulbpl"]
 [ext_resource type="Texture2D" uid="uid://cvtyiv5ldg36k" path="res://imgs/Inside Tileset.png" id="4_y34q6"]
-[ext_resource type="PackedScene" path="res://guard.tscn" id="5_577lp"]
+[ext_resource type="PackedScene" uid="uid://gfpbo7ou5uj4" path="res://guard.tscn" id="5_577lp"]
 [ext_resource type="Script" path="res://RigidBody2D.gd" id="7_6138s"]
-[ext_resource type="PackedScene" path="res://shiny_object.tscn" id="7_befto"]
+[ext_resource type="PackedScene" uid="uid://cqv6n4k0yfpjw" path="res://shiny_object.tscn" id="7_befto"]
 [ext_resource type="Texture2D" uid="uid://cuus3ha26x7tj" path="res://icon.svg" id="7_sbn1h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7tqhw"]

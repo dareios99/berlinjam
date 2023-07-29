@@ -20,6 +20,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta:float):
+	if velocity != Vector2.ZERO:
+		$texture.look_at(global_position + velocity)
+		$texture.rotate(PI/2)
+		
 	check_for_criminals_iterator += 1
 				
 	if guard_state == GuardState.IDLE or check_for_criminals_iterator >= 30:
@@ -39,6 +43,7 @@ func _physics_process(delta:float):
 func _look_for_criminals() -> void:
 	for criminal in criminals_container.get_children():
 		if _check_line_of_sight(criminal):
+			_show_surprise()
 			guard_state = GuardState.FOLLOWING
 			target = criminal
 			return
@@ -89,7 +94,17 @@ func _check_line_of_sight(with_object:Node2D) -> bool:
 	
 	if result.is_empty():
 		return false
-	
+	if result.collider is TileMap:
+		return false
 	return true
 
-
+func _show_surprise() -> void:
+	var exclamation = $Exclamation
+	if exclamation.visible:
+		return
+	exclamation.visible = true
+	var tween = create_tween()
+	tween.tween_property(exclamation, "modulate:a", 1.0, 0.2)
+	tween.tween_interval(1.0)
+	tween.tween_property(exclamation, "modulate:a", 0.0, 0.7)
+	tween.tween_callback(func(): exclamation.visible = false)

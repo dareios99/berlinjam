@@ -5,7 +5,6 @@ extends Area2D
 @onready var img_chest = preload("res://imgs/diamond.png")
 
 
-
 @export_enum("diamond", "gold", "chest") var type_of_treasure:String = "diamond"
 
 func _ready() -> void:
