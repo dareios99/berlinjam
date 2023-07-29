@@ -1,3 +1,4 @@
+class_name Person
 extends CharacterBody2D
 
 @onready var treasure_container = $"../treasure"
