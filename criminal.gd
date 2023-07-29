@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 
 @onready var treasures_container = $"../../treasure"
+@onready var tileMap = $"../../map/TileMap"
 
 enum CriminalState { IDLE, SEARCHING, FOLLOWING, ESCAPING}
 var criminal_state := CriminalState.IDLE
@@ -10,8 +11,28 @@ var target
 
 var check_for_criminals_iterator:= 0
 
+var path: PackedVector2Array;
+var currentPointAlongPath = 0;
+var reachedGoal = false
 
-func _physics_process(delta: float) -> void:
+func _ready() -> void:
+	path = tileMap.calculatePath(tileMap.getClosestGridPoint(position), tileMap.getClosestGridPoint(Vector2(0, 750)))
+
+func finishStep():
+	if reachedGoal:
+		return
+	currentPointAlongPath += 1
+	position = path[currentPointAlongPath]
+	if currentPointAlongPath == path.size() - 1:
+		reachedGoal = true
+		
+func moveToCurrentTarget(progress):
+	if reachedGoal:
+		return
+	var move = path[currentPointAlongPath + 1] - path[currentPointAlongPath] 
+	position = path[currentPointAlongPath] + move * progress
+
+func evaluateNext():
 	if criminal_state == CriminalState.IDLE or check_for_criminals_iterator >= 30:
 		check_for_criminals_iterator = 0
 		_look_for_treasure()
