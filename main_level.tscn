@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://b1yd1o8ogxbay"]
 
 [ext_resource type="Script" path="res://main_level.gd" id="1_78d55"]
-[ext_resource type="PackedScene" uid="uid://ccrd1ov7vl0a3" path="res://waypoint.tscn" id="4_oq586"]
+[ext_resource type="PackedScene" path="res://waypoint.tscn" id="4_oq586"]
 [ext_resource type="PackedScene" uid="uid://4ka7g5bbpf54" path="res://criminal.tscn" id="4_ulbpl"]
 [ext_resource type="Texture2D" uid="uid://cvtyiv5ldg36k" path="res://imgs/Inside Tileset.png" id="4_y34q6"]
 [ext_resource type="Script" path="res://GameMap.gd" id="5_05bvp"]
@@ -232,6 +232,16 @@ script = ExtResource("10_hyywl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_253m4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="guard_spawn_points" type="Node2D" parent="."]
 
 [node name="guard1" type="Marker2D" parent="guard_spawn_points"]
@@ -247,15 +257,5 @@ position = Vector2(-13, 738)
 
 [node name="crim2" type="Marker2D" parent="criminal_spawn_points"]
 position = Vector2(33, 744)
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
-material = SubResource("ShaderMaterial_253m4")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [connection signal="body_exited" from="waypoints/waypoint1" to="." method="_on_waypoint_1_body_exited"]
